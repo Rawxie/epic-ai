@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-on-secondary-fixed: #2f1500;
+  --color-on-error: #ffffff;
+  --color-surface-container: #f0eee6;
+  --color-surface-variant: #e4e3db;
+  --color-on-secondary: #ffffff;
+  --color-on-tertiary-fixed: #0d1c32;
+  --color-inverse-primary: #eec200;
+  --color-surface-container-lowest: #ffffff;
+  --color-outline-muted: rgba(127, 118, 96, 0.15);
+  --color-error: #ba1a1a;
+  --color-on-primary: #ffffff;
+  --color-secondary-fixed-dim: #ffb77c;
+  --color-primary-fixed: #ffe083;
+  --color-primary-container: #facc15;
+  --color-outline-variant: #d1c6ab;
+  --color-surface-dim: #dcdad2;
+  --color-on-tertiary: #ffffff;
+  --color-on-tertiary-container: #4c5a72;
+  --color-on-secondary-fixed-variant: #6e3900;
+  --color-tertiary: #515f78;
+  --color-secondary: #904d00;
+  --color-secondary-container: #fca558;
+  --color-on-surface: #0a192f;
+  --color-on-background: #1b1c17;
+  --color-on-error-container: #93000a;
+  --color-surface-container-highest: #e4e3db;
+  --color-inverse-surface: #30312c;
+  --color-surface: #fbf9f1;
+  --color-tertiary-fixed: #d5e3ff;
+  --color-on-primary-container: #6c5700;
+  --color-surface-container-low: #f6f4ec;
+  --color-surface-bright: #fbf9f1;
+  --color-error-container: #ffdad6;
+  --color-inverse-on-surface: #f3f1e9;
+  --color-on-primary-fixed-variant: #574500;
+  --color-tertiary-fixed-dim: #b9c7e4;
+  --color-primary-fixed-dim: #eec200;
+  --color-tertiary-container: #c3d1ee;
+  --color-on-surface-variant: #4d4632;
+  --color-outline: #7f7660;
+  --color-primary: #735c00;
+  --color-background: #fbf9f1;
+  --color-surface-container-high: #eae8e0;
+  --color-secondary-fixed: #ffdcc3;
+  --color-on-secondary-container: #713b00;
+  --color-on-tertiary-fixed-variant: #39475f;
+  --color-on-primary-fixed: #231b00;
+  --color-surface-tint: #735c00;
+  --color-code-bg: #0a192f;
+
+  /* Spacing */
+  --spacing-gutter: 24px;
+  --spacing-xxl: 64px;
+  --spacing-container-max: 1280px;
+  --spacing-xl: 40px;
+  --spacing-lg: 24px;
+  --spacing-md: 16px;
+  --spacing-margin-mobile: 16px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+
+  /* Border radius */
+  --radius: 0.125rem;
+  --radius-lg: 0.25rem;
+  --radius-xl: 0.5rem;
+  --radius-full: 0.75rem;
+
+  /* Fonts */
+  --font-sora: 'Sora', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-inter);
+  }
+}
+
+@layer components {
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+  }
+
+  .dot-matrix {
+    background-image: radial-gradient(circle, #d1c6ab 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .badge-tilt {
+    transform: rotate(-3deg);
+  }
+
+  .badge-tilt-alt {
+    transform: rotate(2deg);
+  }
+
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    vertical-align: middle;
+  }
+}
+
+/* Skill Pulse: grow-up animation */
+@keyframes growUp {
+  from {
+    height: 0%;
+    opacity: 0;
+  }
+  to {
+    height: var(--target-h);
+    opacity: 1;
+  }
+}
+
+.skill-bar {
+  animation: growUp 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  height: 0%;
+}
+
+.skill-bar:nth-child(1) { animation-delay: 0.1s; }
+.skill-bar:nth-child(2) { animation-delay: 0.2s; }
+.skill-bar:nth-child(3) { animation-delay: 0.3s; }
+.skill-bar:nth-child(4) { animation-delay: 0.4s; }
+.skill-bar:nth-child(5) { animation-delay: 0.5s; }
+
+/* Red pulsing dot */
+@keyframes redPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.5);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.2);
+    box-shadow: 0 0 0 6px rgba(239, 68, 68, 0);
+  }
+}
+
+.live-dot {
+  background-color: #ef4444;
+  border-radius: 9999px;
+  animation: redPulse 1.2s ease-in-out infinite;
+}
